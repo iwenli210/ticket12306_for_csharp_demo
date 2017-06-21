@@ -44,7 +44,7 @@ namespace Ticket12306Demo.Service
 													string.Format("https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module={0}&rand={1}&{2}", module, randType, new Random().NextDouble().ToString()),
 													urlRefer
 				);
-			await ctx.SendTask();
+			await ctx.SendAsync();
 
 			return ctx.Result;
 		}
@@ -80,7 +80,7 @@ namespace Ticket12306Demo.Service
 																						}
 				);
 
-			await ctx.SendTask();
+			await ctx.SendAsync();
 
 			return ctx.IsValid() && ctx.Result.Data.Result == 1;
 		}

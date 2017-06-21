@@ -28,7 +28,7 @@ namespace Ticket12306Demo.Service
 			var client = ServiceContext.Session.NetClient;
 
 			var ctx = client.Create<string>(HttpMethod.Get, "https://kyfw.12306.cn/otn/leftTicket/init");
-			await ctx.SendTask();
+			await ctx.SendAsync();
 
 			if (!ctx.IsValid())
 			{
@@ -89,10 +89,10 @@ namespace Ticket12306Demo.Service
 			//如果需要发送日志，则发送
 			if (_saveQueryLog)
 			{
-				client.Create<string>(HttpMethod.Get,
+				await client.Create<string>(HttpMethod.Get,
 									"https://kyfw.12306.cn/otn/leftTicket/log" + queryparam,
 									"https://kyfw.12306.cn/otn/leftTicket/init"
-					).SendAsync(false);
+					).SendAsync();
 			}
 
 			//发送查询请求
@@ -101,7 +101,7 @@ namespace Ticket12306Demo.Service
 																			"https://kyfw.12306.cn/otn/" + _queryUrl + queryparam,
 																			"https://kyfw.12306.cn/otn/leftTicket/init"
 				);
-			await ctx.SendTask();
+			await ctx.SendAsync();
 
 			if (!ctx.IsValid())
 			{

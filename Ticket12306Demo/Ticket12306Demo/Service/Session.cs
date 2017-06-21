@@ -105,7 +105,7 @@
 											"https://kyfw.12306.cn/otn/login/init",
 											loginData
 				);
-			await loginCheck.SendTask();
+			await loginCheck.SendAsync();
 			if (!loginCheck.IsValid())
 			{
 				return loginCheck.Exception ?? new Exception("未能提交请求");
@@ -122,7 +122,7 @@
 													"https://kyfw.12306.cn/otn/login/userLogin",
 													"https://kyfw.12306.cn/otn/login/init"
 				);
-			await postLogin.SendTask(); //这里的返回值我们不care ....
+			await postLogin.SendAsync(); //这里的返回值我们不care ....
 
 			//登录好了。等等。。我们好像想拿到显示的中文名？
 			//所以多加一个请求吧。
@@ -131,7 +131,7 @@
 													"https://kyfw.12306.cn/otn/index/initMy12306",
 													"https://kyfw.12306.cn/otn/login/init"
 				);
-			await realNameCtx.SendTask();
+			await realNameCtx.SendAsync();
 
 			if (realNameCtx.IsValid())
 			{
